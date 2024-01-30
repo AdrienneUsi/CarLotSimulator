@@ -1,71 +1,46 @@
 ﻿using System;
+using CarLotSim;
 
-namespace CarLotSimulator
+var carLot = new CarLot();
+
+Car car1 = new Car()
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var carLot = new CarLot();
-            //TODO
-
-            //Create a seperate class file called Car
-            //Car shall have the following properties: Year, Make, Model, EngineNoise, HonkNoise, IsDriveable
-            //Car shall have the following methods: MakeEngineNoise(), MakeHonkNoise()
-            //The methods should take one string parameter: the respective noise property
+    Year = 2021,
+    Make = "Toyota",
+    Model = "Camry",
+    EngineNoise = "Vroom",
+    HonkNoise = "Beep",
+    IsDriveable = true
+};
 
 
-            //Now that the Car class is created we can instanciate 3 new cars
-            //Set the properties for each of the cars
-            //Call each of the methods for each car
+Console.WriteLine($"Number of cars in car lot: {CarLot.numberOfCars}\n");
 
-            //*************BONUS*************//
+Car car2 = new Car();
+car2.Year = 2022;
+car2.Make = "Honda";
+car2.Model = "Accord";
+car2.EngineNoise = "Roar";
+car2.HonkNoise = "Honk";
+car2.IsDriveable = true;
 
-            // Set the properties utilizing the 3 different ways we learned about, one way for each car
+Console.WriteLine($"Number of cars in car lot: {CarLot.numberOfCars}\n");
 
-            //Dot Notation
-            var charger = new Car();
-            charger.Make = "Epipohny";
-            charger.Model = "Speed Blaster";
-            charger.Year = 2222;
-            charger.EngineNoise = "Perfection";
-            charger.HonkNoise = "Honk honk";
-            charger.IsDriveable = true;
-
-            Console.WriteLine($"Number of cars at this point: {CarLot._numberOfCars}");
-
-            carLot.ParkingLot.Add(charger);
-
-            //Object Initializer Syntax
-            var honda = new Car()
-            {
-                Make = "Sonic",
-                Model = "Club Rising",
-                Year = 2922,
-                EngineNoise = "Rumble",
-                HonkNoise = "Beep",
-                IsDriveable = true
-            };
-
-            Console.WriteLine($"Number of cars at this point: {CarLot._numberOfCars}");
-
-            carLot.ParkingLot.Add(honda);
-
-            //Using a custom constructor
-            var camry = new Car(2021, "Toyota", "Camry", "Vroom", "Horn", false);
-
-            Console.WriteLine($"Number of cars at this point: {CarLot._numberOfCars}");
-
-            carLot.ParkingLot.Add(camry);
+Car car3 = new Car(2023, "Ford", "Mustang", "Rumble", "Beep Beep", true);
 
 
-            //*************BONUS X 2*************//
+Console.WriteLine($"Number of cars in car lot: {CarLot.numberOfCars} \n");
 
-            //Create a CarLot class
-            //It should have at least one property: a List of cars
-            //Instanciate the a Carlot at the beginning of the program and as you create a car add the car to the list.
-            //At the end iterate through the list printing each of car's Year, Make, and Model to the console
-            carLot.CheckCars();
-        }
-    }
+carLot.Cars.Add(car1);
+carLot.Cars.Add(car2);
+carLot.Cars.Add(car3);
+
+Console.WriteLine($"Number of cars created: {CarLot.numberOfCars}");
+foreach (Car car in carLot.Cars)
+{
+    Console.WriteLine($"Year: {car.Year}, Make: {car.Make}, Model: {car.Model}");
+
+    // Calling methods for each car
+    car.MakeEngineNoise(car.EngineNoise);
+    car.MakeHonkNoise($"{car.HonkNoise}\n");
 }
